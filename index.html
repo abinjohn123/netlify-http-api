@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Math Facts</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <style>
+      .container {
+        max-width: 800px;
+      }
+    </style>
+  </head>
+  <body class="bg-dark py-5">
+    <div class="container bg-light border border-secondary rounded text-center">
+      <h1 class="text-center mb-3">MATH FACTS</h1>
+      <button class="btn btn-dark mb-3" id="fact-btn">New Fact</button>
+      <p class="border border-success rounded p-2" id="fact-output">
+        Fact appears here
+      </p>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const outputEl = document.getElementById('fact-output');
+      const btn = document.getElementById('fact-btn');
+      const api = '';
+
+      function fetchFact() {
+        fetch('http://numbersapi.com/random/math')
+          .then((res) => res.text())
+          .then((data) => (outputEl.textContent = data))
+          .catch((error) => console.log(error));
+      }
+
+      btn.addEventListener('click', fetchFact);
+    </script>
+  </body>
+</html>
