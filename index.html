@@ -38,7 +38,7 @@
         fetch('http://numbersapi.com/random/math')
           .then((res) => res.text())
           .then((data) => (outputEl.textContent = data))
-          .catch((error) => console.log(error));
+          .catch((error) => (outputEl.textContent = error));
       }
 
       btn.addEventListener('click', fetchFact);
