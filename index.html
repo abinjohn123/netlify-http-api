@@ -19,7 +19,9 @@
   <body class="bg-dark py-5">
     <div class="container bg-light border border-secondary rounded text-center">
       <h1 class="text-center mb-3">MATH FACTS</h1>
-      <button class="btn btn-dark mb-3" id="fact-btn">New Fact</button>
+      <button class="btn btn-dark mb-3" value="trivia">Trivia Fact</button>
+      <button class="btn btn-dark mb-3" value="math">Math Fact</button>
+      <button class="btn btn-dark mb-3" value="date">Date Fact</button>
       <p class="border border-success rounded p-2" id="fact-output">
         Fact appears here
       </p>
@@ -31,17 +33,19 @@
     ></script>
     <script>
       const outputEl = document.getElementById('fact-output');
-      const btn = document.getElementById('fact-btn');
+      const btns = [...document.querySelectorAll('.btn')];
       const api = '';
 
-      function fetchFact() {
-        fetch('http://numbersapi.com/random/math')
+      function fetchFact(type) {
+        fetch(`http://numbersapi.com/random/${type}`)
           .then((res) => res.text())
           .then((data) => (outputEl.textContent = data))
           .catch((error) => (outputEl.textContent = error));
       }
 
-      btn.addEventListener('click', fetchFact);
+      btns.forEach((btn) =>
+        btn.addEventListener('click', (e) => fetchFact(e.target.value))
+      );
     </script>
   </body>
 </html>
